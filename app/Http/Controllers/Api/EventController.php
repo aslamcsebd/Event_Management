@@ -47,7 +47,7 @@ class EventController extends Controller
         ]);
 
         return response()->json([
-            'status' => true,
+            'status'  => true,
             'message' => 'Event add successfully',
             'data'    => new EventResource($events)
         ], 200);
@@ -56,7 +56,7 @@ class EventController extends Controller
     public function show(Event $event){
         return response()->json([
             'status' => true,
-            'data'    => new EventResource($event)
+            'data'   => new EventResource($event)
         ], 200);
     }
 
@@ -93,7 +93,7 @@ class EventController extends Controller
     public function destroy(Event $event){
         $event->delete();
         return response()->json([
-            'status' => true,
+            'status'  => true,
             'message' => 'Event delete successfully',
             'data'    => new EventResource($event)
         ], 200);

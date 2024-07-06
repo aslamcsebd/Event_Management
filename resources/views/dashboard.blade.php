@@ -1,9 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{-- {{ __('Dashboard') }} --}}
-        </h2>
-    </x-slot>
     @if ($errors)
         @foreach ($errors->all() as $error)
             <div class="alert alert-danger text-center alert-block">
@@ -26,7 +21,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <button class="btn btn-sm btn-primary text-light mb-2" data-toggle="modal"
+                    <button class="btn btn-primary text-light mb-2" data-toggle="modal"
                         data-original-title="test" data-target="#addEvent">
                         + Add new event
                     </button>
@@ -64,13 +59,11 @@
         </div>
     </div>
 
-    <div id="timeline"></div>
-
     <div class="modal fade" id="addEvent" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header py-2">
-                    <h6 class="modal-title text-center" id="exampleModalLabel">Add new event</h6>
+                    <h5 class="modal-title text-center" id="exampleModalLabel">Add new event</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -100,7 +93,7 @@
                             <input type="text" name="location" class="form-control" id="location"
                                 placeholder="Event location" required>
                         </div>
-                        <div class="modal-footer justify-content-between p-1">
+                        <div class="modal-footer justify-content-between p-1 pb-2">
                             <button class="btn btn-secondary px-4" type="button" data-dismiss="modal">Close</button>
                             <button class="btn btn-success px-4">Save</button>
                         </div>
