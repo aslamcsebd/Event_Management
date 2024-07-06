@@ -19,3 +19,13 @@
 - Show specific event : (get) => http://127.0.0.1:8000/api/events/5
 - Update event        : (put) => http://127.0.0.1:8000/api/events/6
 - Delete event        : (delete) => http://127.0.0.1:8000/api/events/6
+
+### Blade file create & command
+- composer require laravel/breeze --dev
+- php artisan breeze:install
+
+- Bellow file use api route 
+- Event add
+- Event view
+- Event edit
+- Event delete

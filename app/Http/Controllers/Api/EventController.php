@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Api;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 use App\Http\Resources\EventResource;
 use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
+
     public function index(){
         $events = Event::get();
 
@@ -22,6 +24,7 @@ class EventController extends Controller
 
     public function store(Request $request){
         $validator = Validator::make($request->all(),[
+            'user_id'     => 'required',
             'title'       => 'required|string',
             'description' => 'required',
             'date'        => 'required',
@@ -36,6 +39,7 @@ class EventController extends Controller
         }    
 
         $events = Event::create([
+            'user_id'     => $request->user_id,
             'title'       => $request->title,
             'description' => $request->description,
             'date'        => $request->date,
@@ -43,13 +47,17 @@ class EventController extends Controller
         ]);
 
         return response()->json([
+            'status' => true,
             'message' => 'Event add successfully',
             'data'    => new EventResource($events)
         ], 200);
     }
 
     public function show(Event $event){
-        return new EventResource($event);
+        return response()->json([
+            'status' => true,
+            'data'    => new EventResource($event)
+        ], 200);
     }
 
     public function update(Request $request, Event $event){
@@ -62,6 +70,7 @@ class EventController extends Controller
     
         if($validator->fails()){
             return response()->json([
+                'status'  => false,
                 'message' => 'All field are required',
                 'error'   => $validator->messages(),
             ], 422);
@@ -75,6 +84,7 @@ class EventController extends Controller
         ]);
 
         return response()->json([
+            'status'  => true,
             'message' => 'Event update successfully',
             'data'    => new EventResource($event)
         ], 200);
@@ -83,6 +93,7 @@ class EventController extends Controller
     public function destroy(Event $event){
         $event->delete();
         return response()->json([
+            'status' => true,
             'message' => 'Event delete successfully',
             'data'    => new EventResource($event)
         ], 200);
